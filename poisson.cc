@@ -1,7 +1,6 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-
+#include<vector>
+#include<iostream>
+#include<fstream>
 
 using namespace std;
 int main(){

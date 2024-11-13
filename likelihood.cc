@@ -1,32 +1,20 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <cmath>
-using namespace std;
+
+
 double poisson(double mu, int k) {
-    return pow(mu, k) * exp(-mu) / tgamma(k+1);
+    return 0;
 }
 
-int main(){
-  double mu = 3.11538;
-  int N = 234;
+int main() {
+    using namespace std;
 
-  vector<int> zaehler(11, 0);
-  ifstream histFile("hist.txt");
-  int k, count;
-  while(histFile >> k >> count){
-   if(k >= 0 && k <= 10){
-     zaehler[k] = count;
-   }
-  }
-  histFile.close();
 
-  ofstream histPoiFile("histpoi.txt");
-  for(int i = 0; i <= 10; ++i) {
-    double expected = N * poisson(mu, i);
-    histPoiFile << i << " " << zaehler[i] << " " << expected << endl;
-  }
-  histPoiFile.close();
-
-  return 0;
+    ifstream fin("datensumme.txt");
+    int n_i;
+    for(int i = 0 ; i < 234 ; ++i) {
+        fin >> n_i;
+    }
+    fin.close();
 }
