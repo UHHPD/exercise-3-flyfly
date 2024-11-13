@@ -1,8 +1,13 @@
 #include<vector>
 #include<iostream>
 #include<fstream>
+#include<cmath>
 
 using namespace std;
+
+double poisson(double mu, int k) {
+    return pow(mu, k) * exp(-mu) / tgamma(k+1);
+}
 int main(){
   vector<int> zaehler(11, 0);
 
@@ -32,5 +37,14 @@ int main(){
 
   hist.close();
 
+  double mu = 3.11538;
+  int N = 234;
+    
+  ofstream histpoi("histpoi.txt");
+  for(int i = 0; i <= 10; ++i) {
+      double expected = N * poisson(mu, i);
+      histpoi << i << " " << zaehler[i] << " " << expected << endl;
+  }
+  histpoi.close();
   return 0;
 }
