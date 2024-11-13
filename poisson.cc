@@ -3,18 +3,35 @@
 #include <vector>
 
 
-double poisson(double mu, int k) {
-    return 0;
-}
+using namespace std;
+int main(){
+  vector<int> zaehler(11, 0);
 
-int main() {
-    using namespace std;
+  ifstream datei("datensumme.txt");
+  if(!datei) {
+    cerr << "Fehler beim Öffnen der Datei" << endl;
+    return 1;
+  }
 
+  int zahl;
+  while(datei >> zahl){
+      if(zahl >= 0 && zahl <= 10){
+          zaehler[zahl]++;
+      }
+  }
 
-    ifstream fin("datensumme.txt");
-    int n_i;
-    for(int i = 0 ; i < 234 ; ++i) {
-        fin >> n_i;
-    }
-    fin.close();
+  datei.close();
+
+  for(unsigned int i = 0; i < zaehler.size(); ++i) {
+      cout << i << ": " << zaehler[i] << endl;
+  }
+
+  ofstream hist("hist.txt");
+  for (unsigned int i = 0; i < zaehler.size(); ++i) {
+      hist << i << ": " << zaehler[i] << endl;
+  }
+
+  hist.close();
+
+  return 0;
 }
